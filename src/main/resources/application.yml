@@ -1,0 +1,27 @@
+
+netty:
+  resolver:
+    dns:
+      macos:
+        native: false
+
+
+spring:
+  r2dbc:
+    url: r2dbc:mysql://localhost:3307/product_management
+    username: myuser
+    password: mypassword
+  logging:
+    level:
+      org.springframework.r2dbc.core: debug
+
+#  redis:
+#    host: localhost
+#      port: 6379
+#      password: ''
+#      lettuce:
+#        pool:
+#          max-active: 8
+#          max-idle: 8
+#          min-idle: 0
+#      timeout: 5000ms
