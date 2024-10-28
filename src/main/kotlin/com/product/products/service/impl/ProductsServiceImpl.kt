@@ -19,16 +19,22 @@ class ProductsServiceImpl (
     override fun createProduct(products: Products) : Mono<ProductsCreateRes> {
         return productsRepository.findByCategory(products.category)
             .flatMap { existingProduct ->
-                println("exist => ${existingProduct.id}")
                 Mono.just(ProductsCreateRes(
                     id = existingProduct.id!!,
-                    category = existingProduct.category))
+                    category = existingProduct.category,
+                    name = existingProduct.name,
+                    price = existingProduct.price,
+                    totalCount = existingProduct.price
+                    ))
             }
             .switchIfEmpty(
                 productsRepository.save(products)
                     .map { savedProduct -> ProductsCreateRes(
                         id = savedProduct.id!!,
-                        category = savedProduct.category) }
+                        category = savedProduct.category,
+                        name = savedProduct.name,
+                        price = savedProduct.price,
+                        totalCount = savedProduct.price) }
             )
 
     }
@@ -38,7 +44,10 @@ class ProductsServiceImpl (
             .map { existingProduct ->
                 ProductDto(
                     id = existingProduct.id!!,
-                    category = existingProduct.category)
+                    category = existingProduct.category,
+                    name = existingProduct.name,
+                    price = existingProduct.price,
+                    totalCount = existingProduct.price)
             }
     }
 
@@ -51,7 +60,10 @@ class ProductsServiceImpl (
             .map { deletedProduct ->
                 ProductDto(
                     id = deletedProduct.id!!,
-                    category = deletedProduct.category)
+                    category = deletedProduct.category,
+                    name = deletedProduct.name,
+                    price = deletedProduct.price,
+                    totalCount = deletedProduct.price)
             }
             .switchIfEmpty(
                 Mono.error(CustomException(ResultCode.NOT_FOUND))

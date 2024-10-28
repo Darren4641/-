@@ -8,4 +8,6 @@ import reactor.core.publisher.Mono
 @Repository
 interface ProductsRepository : ReactiveCrudRepository<Products, Long> {
     fun findByCategory(category: String): Mono<Products>
+
+    fun countById(id: Long) : Mono<Long>
 }
