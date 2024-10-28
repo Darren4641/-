@@ -1,9 +1,11 @@
-//package com.product.products.repository
-//
-//import com.product.products.entity.Products
-//import org.springframework.data.repository.reactive.ReactiveCrudRepository
-//import reactor.core.publisher.Flux
-//
-//interface ProductsRepository : ReactiveCrudRepository<Products, Long> {
-//    fun findByCategory(category: String) : Flux<Products>
-//}
+package com.product.products.repository
+
+import com.product.products.entity.Products
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
+import org.springframework.stereotype.Repository
+import reactor.core.publisher.Mono
+
+@Repository
+interface ProductsRepository : ReactiveCrudRepository<Products, Long> {
+    fun findByCategory(category: String): Mono<Products>
+}

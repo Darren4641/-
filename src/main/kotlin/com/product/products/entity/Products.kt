@@ -5,11 +5,12 @@ import org.springframework.data.relational.core.mapping.Table
 
 @Table("products")
 class Products (
-    @Id
-    val id: Long,
 
     val category: String
-)
+) {
+    @Id
+    var id: Long? = null
+}
 
 
 

@@ -9,8 +9,8 @@ netty:
 spring:
   r2dbc:
     url: r2dbc:mysql://localhost:3307/product_management
-    username: myuser
-    password: mypassword
+    username: user
+    password: password
   logging:
     level:
       org.springframework.r2dbc.core: debug

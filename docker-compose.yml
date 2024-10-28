@@ -14,6 +14,7 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - pms
+    command: --default-authentication-plugin=mysql_native_password
 
   redis:
     image: redis:latest
